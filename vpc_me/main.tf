@@ -7,10 +7,6 @@ variable "AWS_REGION"  { default = "eu-west-1" }
 variable "TAGS"        { default = {} }
 #################
 
-
-provider "aws" { region = "${var.AWS_REGION}" }
-data "aws_availability_zones" "available" {}
-
 # VPC Resource
 resource "aws_vpc" "VPC" {
     cidr_block = "${var.VPC_CIDR}"
@@ -18,7 +14,7 @@ resource "aws_vpc" "VPC" {
     enable_dns_support = "true"
     enable_dns_hostnames = "true"
     enable_classiclink = "false"
-    tags = "${merge(var.TAGS, map("Name", format("%s.%s", var.NAME, element(var.AWS_REGION, count.index))))}"
+    tags = "${merge(var.TAGS, map("Name", format("%s.%s", var.NAME, var.AWS_REGION)))}"
 }
 # Internet Gateway
 resource "aws_internet_gateway" "gw" {
