@@ -23,7 +23,7 @@ resource "aws_vpc" "VPC" {
 # Internet Gateway
 resource "aws_internet_gateway" "gw" {
     vpc_id = "${aws_vpc.VPC.id}"
-    tags { Name = "${var.VPC_NAME}" }
+    tags { Name = "${var.NAME}" }
 }
 
 output "vpc_id" { value = "${aws_vpc.main.id}" }
