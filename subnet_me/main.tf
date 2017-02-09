@@ -3,11 +3,14 @@ variable "NAME" { default = "Public" }
 variable "CIDRS" { default = ["10.0.1.0/24","10.0.2.0/24"] }
 variable "NAME_PRIV" { default = "Private" }
 variable "CIDRS_PRIV" { default = ["10.0.101.0/24","10.0.102.0/24"] }
-variable "AZS" { default = ["${data.aws_availability_zones.available.names[0]}","${data.aws_availability_zones.available.names[1]}"] }
+variable "AZS" { default = ["eu-west-1a","eu-west-1b"] }
 variable "VPC_ID" { default = "VPC" }
 variable "IGW_ID" { default = "IGW" }
 variable "ASSIGN_PUB_IP" { default = true }
 variable "TAGS" { default = {} }
+variable "nat_gateways_count" {type = "list"}
+variable "environment" {description = "Environment tag, e.g prod"}
+
 # Public Subnets
 resource "aws_subnet" "public" {
   vpc_id                  = "${var.VPC_ID}"

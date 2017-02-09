@@ -20,7 +20,7 @@ Example of Use
 
 ```js
 module "public_subnets" {
-  source      = "github.com/cascompany/terraform-modules/subnet_me"
+  source      = "https://github.com/cascompany/terraform-modules/tree/master/subnet_me"
   NAME        = "prod-public"
   CIDRS       = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   NAME_PRIV   = "prod-private"
