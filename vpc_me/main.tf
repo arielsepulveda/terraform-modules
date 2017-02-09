@@ -21,10 +21,7 @@ resource "aws_vpc" "VPC" {
     tags = "${merge(var.TAGS, map("Name", format("%s.%s", var.NAME, element(var.AWS_REGION, count.index))))}"
 }
 # Internet Gateway
-resource "aws_internet_gateway" "gw" {
+resource "aws_internet_gateway" "myVPC-gateway" {
     vpc_id = "${aws_vpc.VPC.id}"
     tags { Name = "${var.VPC_NAME}" }
 }
-
-output "vpc_id" { value = "${aws_vpc.main.id}" }
-output "vpc_igw" { value = "${aws_internet_gateway.gw.id}" }
