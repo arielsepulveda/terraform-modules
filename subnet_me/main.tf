@@ -78,13 +78,13 @@ resource "aws_route" "nat_gateway" {
 # EIP
 resource "aws_eip" "nat" {
   vpc   = true
-  count = "${var.nat_gateways_count}"
+  count = "${length(var.CIDRS_PRIV)}"
 }
 # NAT
 resource "aws_nat_gateway" "nat" {
   allocation_id = "${element(aws_eip.nat.*.id, count.index)}"
   subnet_id     = "${element(aws_subnet.public.*.id, count.index)}"
-  count         = "${var.nat_gateways_count}"
+  count         = "${length(var.CIDRS_PRIV)}"
 }
 
 # Output
