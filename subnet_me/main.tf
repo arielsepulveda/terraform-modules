@@ -9,7 +9,7 @@ variable "IGW_ID" { default = "IGW" }
 variable "ASSIGN_PUB_IP" { default = true }
 variable "TAGS" { default = {} }
 variable "nat_gateways_count" { default = "2" }
-variable "environment" {description = "Environment tag, e.g prod"}
+variable "environment" { default = "testing"}
 
 # Public Subnets
 resource "aws_subnet" "public" {
