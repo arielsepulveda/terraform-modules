@@ -43,15 +43,11 @@ resource "aws_route" "igw" {
   depends_on             = [ "aws_route_table.public" ]
   lifecycle              { create_before_destroy = true }
 }
-# Output
-output "subnet_ids" { value = [ "${aws_subnet.public.*.id}" ] }
-output "public_route_table_ids" { value = [ "${aws_route_table.public.*.id}" ] }
-
 
 # This part will generate Private Subnets, Routes, and NAT.
 
 # Private Subnets
-resource "aws_subnet" "public" {
+resource "aws_subnet" "private" {
   vpc_id                  = "${var.VPC_ID}"
   cidr_block              = "${element(var.CIDRS_PRIV, count.index)}"
   availability_zone       = "${element(var.AZS, count.index)}"
