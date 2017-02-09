@@ -8,7 +8,7 @@ variable "VPC_ID" { default = "VPC" }
 variable "IGW_ID" { default = "IGW" }
 variable "ASSIGN_PUB_IP" { default = true }
 variable "TAGS" { default = {} }
-variable "nat_gateways_count" {type = "list"}
+variable "nat_gateways_count" { default = "2" }
 variable "environment" {description = "Environment tag, e.g prod"}
 
 # Public Subnets
